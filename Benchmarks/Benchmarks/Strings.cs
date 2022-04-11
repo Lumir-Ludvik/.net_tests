@@ -1,16 +1,7 @@
-﻿using System;
-using System.Buffers.Text;
-using System.Collections.Generic;
-using System.Linq;
+﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Diagnostics.Windows.Configs;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using BenchmarkDotNet.Attributes;
-using System;
-using System.Drawing;
-using System.Runtime.InteropServices;
-using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Diagnostics.Windows.Configs;
 
 namespace Benchmarks
 {

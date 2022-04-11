@@ -1,0 +1,7 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 2 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet restore  /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Git repa\.net_tests\Benchmarks\Benchmarks\bin\Release\net6.0\6ef40a01-9117-4c39-acb4-7d2b69a75137
+// command took 1,46s and exited with 0
+// start dotnet build -c Release  --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Git repa\.net_tests\Benchmarks\Benchmarks\bin\Release\net6.0\6ef40a01-9117-4c39-acb4-7d2b69a75137
