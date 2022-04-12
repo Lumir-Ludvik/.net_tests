@@ -35,5 +35,26 @@ namespace Benchmarks
                 i++;
             }
         }
+
+        [Benchmark]
+        public void GoToMethod()
+        {
+            int i = 0;
+
+            Cycle:
+                if (i < numInts.Length)
+                {
+                    numInts[i] = i;
+                    i++;
+                }
+                else
+                {
+                    goto Finish;
+                }
+            goto Cycle;
+
+            Finish:
+                return;
+        }
     }
 }
