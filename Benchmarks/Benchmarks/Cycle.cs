@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Diagnostics.Windows.Configs;
+﻿using BenchmarkDotNet.Attributes;
 
 namespace Benchmarks
 {
-    [NativeMemoryProfiler]
     [MinColumn, MaxColumn]
     [MemoryDiagnoser]
     public class Cycle
