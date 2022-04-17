@@ -69,3 +69,4 @@ C:\Git repa\.net_tests\Benchmarks\Benchmarks\obj\Release\net6.0\refint\Benchmark
 C:\Git repa\.net_tests\Benchmarks\Benchmarks\obj\Release\net6.0\Benchmarks.pdb
 C:\Git repa\.net_tests\Benchmarks\Benchmarks\obj\Release\net6.0\Benchmarks.genruntimeconfig.cache
 C:\Git repa\.net_tests\Benchmarks\Benchmarks\obj\Release\net6.0\ref\Benchmarks.dll
+C:\Git repa\.net_tests\Benchmarks\Benchmarks\bin\Release\net6.0\MersenneTwister.dll

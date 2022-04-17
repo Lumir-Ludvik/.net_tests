@@ -7,5 +7,6 @@ using Benchmarks;
 //BenchmarkRunner.Run<Splits>();
 //BenchmarkRunner.Run<Increments>();
 //BenchmarkRunner.Run<Cycle>();
-BenchmarkRunner.Run<BenchProperties>();
+//BenchmarkRunner.Run<BenchProperties>();
+BenchmarkRunner.Run<Conditions>();
 Console.ReadLine();

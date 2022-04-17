@@ -8,7 +8,6 @@ using BenchmarkDotNet.Diagnostics.Windows.Configs;
 
 namespace Benchmarks
 {
-    [NativeMemoryProfiler]
     [MinColumn, MaxColumn]
     [MemoryDiagnoser]
     public class Increments

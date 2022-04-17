@@ -6,7 +6,6 @@ using Microsoft.Diagnostics.Runtime.ICorDebug;
 
 namespace Benchmarks
 {
-    [NativeMemoryProfiler]
     [MinColumn, MaxColumn]
     [MemoryDiagnoser]
     public class Strings

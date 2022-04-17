@@ -55,6 +55,10 @@
             "BenchmarkDotNet.Diagnostics.Windows": {
               "target": "Package",
               "version": "[0.13.1, )"
+            },
+            "MersenneTwister": {
+              "target": "Package",
+              "version": "[1.0.6, )"
             }
           },
           "imports": [

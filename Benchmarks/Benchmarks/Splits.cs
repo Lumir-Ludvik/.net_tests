@@ -11,7 +11,6 @@ using Microsoft.Diagnostics.Tracing.Parsers.MicrosoftWindowsTCPIP;
 
 namespace Benchmarks
 {
-    [NativeMemoryProfiler]
     [MinColumn, MaxColumn]
     [MemoryDiagnoser]
     public class Splits
