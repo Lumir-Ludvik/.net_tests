@@ -11,9 +11,13 @@ namespace SignalRClient;
 public partial class MainWindow : Window
 {
     HubConnection hubConnection;
+    private int userId = new Random().Next(0, 101);
+    private bool isInGroup = false;
     public MainWindow()
     {
         InitializeComponent();
+
+        userName.Content = $"WPF Client: {userId}";
         hubConnection = new HubConnectionBuilder()
             .WithUrl("https://localhost:7268/chathub")
             .WithAutomaticReconnect()
@@ -37,6 +41,7 @@ public partial class MainWindow : Window
                 var newMessage = "Reconnected to the server!";
                 messages.Items.Clear();
                 messages.Items.Add(newMessage);
+                hubConnection.InvokeAsync("SendStatus", userName.Content, true);
             });
 
             return Task.CompletedTask;
@@ -50,6 +55,7 @@ public partial class MainWindow : Window
                 messages.Items.Add(newMessage);
                 openConnection.IsEnabled = true;
                 sendMessage.IsEnabled = false;
+                hubConnection.InvokeAsync("SendStatus", userName.Content, false);
             });
 
             return Task.CompletedTask;
@@ -67,12 +73,24 @@ public partial class MainWindow : Window
 
             return Task.CompletedTask;
         });
+
+        hubConnection.On<string, string>("GroupMessage", (user, message) =>
+        {
+            Dispatcher.Invoke(() =>
+            {
+                messages.Items.Add($"Group1_{user}: {message}");
+            });
+
+            return Task.CompletedTask;
+        });
+
         try
         {
             await hubConnection.StartAsync();
             messages.Items.Add("Connection Started");
             openConnection.IsEnabled = false;
             sendMessage.IsEnabled = true;
+            await hubConnection.InvokeAsync("SendStatus", userName.Content, true);
         }
         catch (Exception exception)
         {
@@ -84,11 +102,39 @@ public partial class MainWindow : Window
     {
         try
         {
-            await hubConnection.InvokeAsync("SendMessages", "WPF Client", messageInput.Text);
+            if (isInGroup)
+            {
+                await hubConnection.InvokeAsync("SendToGroup", userName.Content, messageInput.Text, "Group1");
+            }
+            else
+            {
+                await hubConnection.InvokeAsync("SendMessages", userName.Content, messageInput.Text);
+            }
         }
         catch (Exception exception)
         {
             messages.Items.Add(exception.Message);
         }
+    }
+
+    private async void closeConnection_Click(object sender, RoutedEventArgs e)
+    {
+        await hubConnection.InvokeAsync("SendStatus", userName.Content, false);
+        await hubConnection.StopAsync();
+
+    }
+
+    private async void joinGroup_Click(object sender, RoutedEventArgs e)
+    {
+        await hubConnection.InvokeAsync("JoinGroup", "Group1");
+        joinedGroup.Content = "Joined Group1";
+        isInGroup = true;
+    }
+
+    private async void leaveGroup_Click(object sender, RoutedEventArgs e)
+    {
+        await hubConnection.InvokeAsync("LeaveGroup", "Group1");
+        joinedGroup.Content = "Not in any group";
+        isInGroup = false;
     }
 }

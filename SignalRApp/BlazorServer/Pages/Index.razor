@@ -3,6 +3,18 @@
 @inject NavigationManager NavManager
 @implements IAsyncDisposable
 
+<div>
+    <span>Users:</span>
+    <ul>
+        @foreach (var user in users)
+        {
+            <li style="@(@user.Contains("Online") ? "color: green;" : "color: red;")">
+                @user
+            </li>
+        }
+    </ul>
+</div>
+
 <div class="form-group">
     <label>
         User: <input @bind="userInput" />
@@ -25,12 +37,30 @@
     }
 </ul>
 
+<hr/>
+<button @onclick="JoinGroup">Join Group</button>
+<button @onclick="LeaveGroup">Leave Group</button>
+<span id="groupSpan">@(isInGroup ? "You are in Group1" : "You are not in any group")</span>
+
+<div style="margin: 20px;">
+    <span>Group1:</span>
+    <ul>
+        @foreach (var message in groupMessages)
+        {
+            <li style="color: lightseagreen;">@message</li>
+        }
+    </ul>
+</div>
+
 @code
 {
     private HubConnection? hubConnection;
-    private List<string> messages = new();
+    private readonly List<string> messages = new();
+    private readonly List<string> groupMessages = new();
     private string? userInput;
     private string? messageInput;
+    private readonly List<string> users = new();
+    private bool isInGroup = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -45,6 +75,27 @@
             await InvokeAsync(StateHasChanged);
         });
 
+        hubConnection.On<string, string>("GroupMessage", async (user, message) =>
+        {
+            groupMessages.Add($"{user}: {message}");
+            await InvokeAsync(StateHasChanged);
+        });
+
+        hubConnection.On<string, bool>("IsOnline", async (user, status) =>
+        {
+            if (!users.Any(u => u.Contains(user)))
+            {
+                users.Add(status ? $"{user}: Online" : $"{user}: Offline");
+            }
+            else
+            {
+                var userToChange = users.Find(u => u.Contains(user));
+                users[users.IndexOf(userToChange)] =  userToChange.Contains("Online") ? $"{user}: Offline" : $"{user}: Online";
+            }
+
+            await InvokeAsync(StateHasChanged);
+        });
+
         try
         {
             await hubConnection.StartAsync();
@@ -52,7 +103,6 @@
         catch (Exception e)
         {
             Console.WriteLine(e);
-            Console.WriteLine("něco se pojebkalo :(");
             throw;
         }
     }
@@ -61,8 +111,15 @@
     {
         if (hubConnection is not null)
         {
-            // SendMessage is the name of the method from ChatHub
-            await hubConnection.SendAsync("SendMessages", userInput, messageInput);
+            if (isInGroup)
+            {
+                await hubConnection.SendAsync("SendToGroup", userInput, messageInput, "Group1");
+            }
+            else
+            {
+                // SendMessage is the name of the method from ChatHub
+                await hubConnection.SendAsync("SendMessages", userInput, messageInput);
+            }
         }
     }
 
@@ -73,6 +130,24 @@
         if (hubConnection is not null)
         {
             await hubConnection.DisposeAsync();
+        }
+    }
+
+    private async Task JoinGroup()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.SendAsync("JoinGroup", "Group1");
+            isInGroup = true;
+        }
+    }
+    
+    private async Task LeaveGroup()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.SendAsync("LeaveGroup", "Group1");
+            isInGroup = false;
         }
     }
 }
