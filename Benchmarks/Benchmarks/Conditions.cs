@@ -238,91 +238,30 @@ public class Conditions
     {
         var random = MersenneTwister.MT64Random.Create();
         int value = random.Next(10);
-        string res;
-        switch (value)
+        string res = value switch
         {
-            case (int)testValues.first:
-                res = testValues.first.ToString();
-                break;
-            case (int)testValues.second:
-                res = testValues.second.ToString();
-                break;
-
-            case (int)testValues.third:
-                res = testValues.third.ToString();
-                break;
-
-            case (int)testValues.fourth:
-                res = testValues.fourth.ToString();
-                break;
-
-            case (int)testValues.fifth:
-                res = testValues.fifth.ToString();
-                break;
-
-            case (int)testValues.sixth:
-                res = testValues.sixth.ToString();
-                break;
-
-            case (int)testValues.seventh:
-                res = testValues.seventh.ToString();
-                break;
-
-            case (int)testValues.eighth:
-                res = testValues.eighth.ToString();
-                break;
-
-            case (int)testValues.ninth:
-                res = testValues.ninth.ToString();
-                break;
-
-            case (int)testValues.ten:
-                res = testValues.ten.ToString();
-                break;
-
-            case (int)testValues.eleven:
-                res = testValues.eleven.ToString();
-                break;
-            case (int)testValues.twelve:
-                res = testValues.twelve.ToString();
-                break;
-
-            case (int)testValues.thrteen:
-                res = testValues.thrteen.ToString();
-                break;
-
-            case (int)testValues.fourtheen:
-                res = testValues.fourtheen.ToString();
-                break;
-
-            case (int)testValues.fiftheen:
-                res = testValues.fiftheen.ToString();
-                break;
-
-            case (int)testValues.sixtheen:
-                res = testValues.sixtheen.ToString();
-                break;
-
-            case (int)testValues.seventheen:
-                res = testValues.seventheen.ToString();
-                break;
-
-            case (int)testValues.egthteen:
-                res = testValues.egthteen.ToString();
-                break;
-
-            case (int)testValues.ninetheen:
-                res = testValues.ninetheen.ToString();
-                break;
-
-            case (int)testValues.twenty:
-                res = testValues.twenty.ToString();
-                break;
-
-            default:
-                res = "none";
-                break;
-        }
+            (int)testValues.first => testValues.first.ToString(),
+            (int)testValues.second => testValues.second.ToString(),
+            (int)testValues.third => testValues.third.ToString(),
+            (int)testValues.fourth => testValues.fourth.ToString(),
+            (int)testValues.fifth => testValues.fifth.ToString(),
+            (int)testValues.sixth => testValues.sixth.ToString(),
+            (int)testValues.seventh => testValues.seventh.ToString(),
+            (int)testValues.eighth => testValues.eighth.ToString(),
+            (int)testValues.ninth => testValues.ninth.ToString(),
+            (int)testValues.ten => testValues.ten.ToString(),
+            (int)testValues.eleven => testValues.eleven.ToString(),
+            (int)testValues.twelve => testValues.twelve.ToString(),
+            (int)testValues.thrteen => testValues.thrteen.ToString(),
+            (int)testValues.fourtheen => testValues.fourtheen.ToString(),
+            (int)testValues.fiftheen => testValues.fiftheen.ToString(),
+            (int)testValues.sixtheen => testValues.sixtheen.ToString(),
+            (int)testValues.seventheen => testValues.seventheen.ToString(),
+            (int)testValues.egthteen => testValues.egthteen.ToString(),
+            (int)testValues.ninetheen => testValues.ninetheen.ToString(),
+            (int)testValues.twenty => testValues.twenty.ToString(),
+            _ => "none"
+        };
         return res;
     }
 
