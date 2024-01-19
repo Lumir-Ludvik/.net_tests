@@ -8,6 +8,7 @@ namespace Benchmarks
     {
 
         private int[] numInts = new int[1_000_000_000];
+        private List<int> ints = new List<int>();
 
         [Benchmark]
         public void ForMethod()
@@ -15,6 +16,17 @@ namespace Benchmarks
             for (int i = 0; i < numInts.Length; i++)
             {
                 numInts[i] = i;
+            }
+        }
+
+        [Benchmark]
+        public void ForeachMethod()
+        {
+            var ii = 0;
+
+            foreach (var i in numInts)
+            {
+                numInts[i] = ii++;
             }
         }
 
@@ -48,6 +60,12 @@ namespace Benchmarks
 
             Finish:
                 return;
+        }
+
+        [Benchmark]
+        public void LinqSelect()
+        {
+            ints = numInts.Select(i => i).ToList();
         }
     }
 }

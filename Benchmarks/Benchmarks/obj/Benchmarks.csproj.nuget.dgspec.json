@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git repa\\.net_tests\\Benchmarks\\Benchmarks\\Benchmarks.csproj": {}
+    "C:\\work\\.net_tests\\Benchmarks\\Benchmarks\\Benchmarks.csproj": {}
   },
   "projects": {
-    "C:\\Git repa\\.net_tests\\Benchmarks\\Benchmarks\\Benchmarks.csproj": {
+    "C:\\work\\.net_tests\\Benchmarks\\Benchmarks\\Benchmarks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git repa\\.net_tests\\Benchmarks\\Benchmarks\\Benchmarks.csproj",
+        "projectUniqueName": "C:\\work\\.net_tests\\Benchmarks\\Benchmarks\\Benchmarks.csproj",
         "projectName": "Benchmarks",
-        "projectPath": "C:\\Git repa\\.net_tests\\Benchmarks\\Benchmarks\\Benchmarks.csproj",
+        "projectPath": "C:\\work\\.net_tests\\Benchmarks\\Benchmarks\\Benchmarks.csproj",
         "packagesPath": "C:\\Users\\lumir\\.nuget\\packages\\",
-        "outputPath": "C:\\Git repa\\.net_tests\\Benchmarks\\Benchmarks\\obj\\",
+        "outputPath": "C:\\work\\.net_tests\\Benchmarks\\Benchmarks\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -67,7 +68,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -76,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
